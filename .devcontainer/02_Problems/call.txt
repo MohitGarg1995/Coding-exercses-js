@@ -1,0 +1,112 @@
+1. Prototype Extension:-
+
+Function.prototype.myCall = function(context = {}, ...args){
+
+}
+
+* This line adds a new method called mycall to the Function prototype. This means that all functions will have access to this method.
+* context = {}: Sets a default context to an empty object if no context is provided.
+* ...args: Uses the rest parameter syntax to collect all arguments passed to mycall into an array called args.
+
+
+2. Type Check:-
+
+if(typeof this !== "function){
+    throw new Error(this + " is not callable");
+}
+
+*  This line checks if this is a function. If this is not a function, it throws an error indicating that the method is being called on a non-callable object.
+*  This refers to the function on which mycall is being INVOKED.
+
+3. Assign Function to Context:
+
+context.fn = this
+
+
+4. Invoke the Function:
+ 
+ context.fn(...args)
+
+
+
+
+
+
+ EXAMPLE:--------------
+
+
+ Function.prototype.mycall = function(context = {}, ...args) {
+    if (typeof this !== "function") {
+        throw new Error(this + " is not callable");
+    }
+    context.fn = this;
+    context.fn(...args);
+    delete context.fn; // Clean up after execution
+};
+
+function greet(greeting, punctuation) {
+    console.log(greeting + ', ' + this.name + punctuation);
+}
+
+const person = {
+    name: 'Alice'
+};
+
+// Using the custom mycall method
+greet.mycall(person, 'Hello', '!'); // Output: Hello, Alice!
+
+
+
+
+
+1.  Function Definition (greet): ----this is the function
+
+ function greet(greeting, punctuation) {
+    console.log(greeting + ', ' + this.name + punctuation);
+}
+
+2.   Context Object (person):------
+
+  const person = {
+    name: 'Alice'
+};
+
+3.  Using mycall:-----------
+    greet.mycall(person, 'Hello', '!');
+
+
+
+
+
+
+What Happens Internally /////////////////////////////////////
+
+1.  Check if this is a Function:----
+
+if (typeof this !== "function") {
+    throw new Error(this + " is not callable");
+}
+TIPS :--  Ensures that this is indeed a function. If not, it throws an error. Here, this refers to the greet function.
+
+
+2.  Assign the Function to the Context Object:-----
+   context.fn = this;
+
+ Assigns the greet function to a property named fn on the context object. This effectively means:
+
+    person.fn = greet;
+
+3.  Call the Function with the Provided Arguments:-----
+    context.fn(...args)    
+
+    Calls the fn property of person (which is the greet function) with the arguments 'Hello' and '!':
+
+    person.fn('Hello', '!');
+
+4.  Clean Up (Optional but Recommended):
+
+    delete context.fn;
+
+
+
+

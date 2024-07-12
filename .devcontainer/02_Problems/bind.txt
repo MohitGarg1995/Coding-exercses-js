@@ -1,0 +1,73 @@
+Example to understand:->>
+
+const person = {
+    name:"Mohit",
+    age: 30,
+    designation: function(designation){
+        console.log(`My desination is ${designation} & name is ${this.name}`)
+    }
+}
+
+const des = person.designation;
+des("Web Dev");    // undefined because this is not bound // My desination is Web Dev & name is undefined
+
+const designationBind = person.designation.bind(person);
+designationBind("Front end developer");                  //My desination is Front end developer & name is Mohit
+
+
+
+How Bind works -------->
+
+const person = {
+  name: 'Alice',
+  greet: function(greeting) {
+    console.log(greeting + ', ' + this.name);
+  }
+};
+
+const greet = person.greet;
+greet('Hello'); // undefined, because 'this' is not bound
+
+const boundGreet = person.greet.bind(person);
+boundGreet('Hello'); // Hello, Alice
+
+person is an object with a name property and a greet method.
+We assign the greet method to a variable greet. When we call greet('Hello'), it doesn't work as expected because this is not bound to the person object.
+We create a new function boundGreet by binding person.greet to the person object. Now, when we call boundGreet('Hello'), it correctly prints "Hello, Alice" because this is bound to person.
+
+
+
+Partially applied functions ---------->
+
+function multiply(a, b) {
+  return a * b;
+}
+
+const multiplyByTwo = multiply.bind(null, 2);
+console.log(multiplyByTwo(5)); // 10
+
+const multiplyByThree = multiply.bind(null, 3);
+console.log(multiplyByThree(5)); // 15
+
+
+multiply is a function that takes two arguments and returns their product.
+multiplyByTwo is a new function created by binding multiply with the first argument set to 2. When we call multiplyByTwo(5), it multiplies 2 and 5.
+
+
+
+
+
+Summary
+The bind method is useful when you want to:
+
+Create a new function with a specific this context.
+Partially apply arguments to a function.
+Ensure that a function retains its this context when passed around as a callback or used in event handlers.
+
+
+
+
+
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
+https://www.geeksforgeeks.org/explain-call-apply-and-bind-methods-in-javascript/?ref=ml_lbp
