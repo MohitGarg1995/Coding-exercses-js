@@ -14,3 +14,4 @@ console.log("This is the complete URL:-",buildURL(baseURL, endpoint, params));
 function buildURL(para1, para2, para3) {
   const mergeThirdPara = Object.entries(para3)
 }
+// only for testing purpose
