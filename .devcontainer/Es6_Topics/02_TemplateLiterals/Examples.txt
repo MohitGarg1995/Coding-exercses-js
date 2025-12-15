@@ -1,0 +1,98 @@
+Perfect — let’s make this super practical. I’ll show you **tiny examples** for each case (dynamic objects, API responses, query parameters, form data, props objects) so you see where template literals naturally fit into React workflows.  
+
+---
+
+## 🔹 **1. Dynamic Objects**
+React often stores data in objects. Template literals help you display values easily.
+
+```js
+const user = { name: "Mohit", role: "Developer" };
+
+console.log(`User ${user.name} is a ${user.role}`);
+```
+
+👉 Output:  
+`User Mohit is a Developer`
+
+---
+
+## 🔹 **2. API Responses**
+When you fetch data, you often need to format it for display.
+
+```js
+const product = { title: "Laptop", price: 45000 };
+
+console.log(`Product: ${product.title}, Price: ₹${product.price}`);
+```
+
+👉 Output:  
+`Product: Laptop, Price: ₹45000`
+
+---
+
+## 🔹 **3. Query Parameters**
+Building dynamic URLs for API calls is a daily React task.
+
+```js
+const baseURL = "https://api.example.com";
+const endpoint = "search";
+const query = "react";
+
+console.log(`${baseURL}/${endpoint}?q=${query}`);
+```
+
+👉 Output:  
+`https://api.example.com/search?q=react`
+
+---
+
+## 🔹 **4. Form Data**
+When handling forms, you often need to show a summary.
+
+```js
+const formData = { name: "Riya", email: "riya@example.com" };
+
+console.log(`Form submitted by ${formData.name} with email ${formData.email}`);
+```
+
+👉 Output:  
+`Form submitted by Riya with email riya@example.com`
+
+---
+
+## 🔹 **5. Props Objects (React‑specific)**
+Props are just objects passed into components. Template literals help render them.
+
+```jsx
+function Welcome(props) {
+  return <h2>{`Hello ${props.name}, you are ${props.age} years old!`}</h2>;
+}
+
+// Usage
+<Welcome name="Mohit" age={28} />
+```
+
+👉 Rendered Output:  
+`Hello Mohit, you are 28 years old!`
+
+---
+
+# ✅ Where else can you use template literals in React?
+- **Dynamic class names**:  
+  ```jsx
+  <div className={`card ${isActive ? "active" : ""}`}></div>
+  ```
+- **Inline styles**:  
+  ```jsx
+  <div style={{ backgroundColor: `${themeColor}` }}>Hello</div>
+  ```
+- **Logging debug info**:  
+  ```js
+  console.log(`Component ${componentName} mounted at ${Date.now()}`);
+  ```
+
+---
+
+⚡ So template literals are like your **Swiss army knife** in React — they make string building clean, readable, and dynamic.
+
+Would you like me to give you a **mini React project example** (like a search bar that builds a query string using template literals) so you can practice this in a real React component?

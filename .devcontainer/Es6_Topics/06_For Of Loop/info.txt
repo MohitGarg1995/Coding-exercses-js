@@ -1,0 +1,91 @@
+Great question, Mohit 👌 — let’s break this down clearly because **`for...of` vs `.map()`** is something recruiters sometimes probe to see if you understand iteration patterns in React/JavaScript.  
+
+---
+
+# 🔹 **Do we use `for...of` more in React?**
+👉 Short answer: **No, `.map()` is used more often than `for...of` in React**, because `.map()` directly returns a new array (often JSX elements) which fits React’s declarative style.  
+- `for...of` is still useful, but it’s more common in **data processing** before rendering, not directly inside JSX.  
+
+---
+
+# 🔹 **Where `for...of` is Useful in React**
+
+### **1. Array of Objects (your example)**
+Yes — you can loop through an array of objects with `for...of`.  
+But in React, `.map()` is preferred because it directly returns JSX:
+```jsx
+{users.map(user => <Profile key={user.id} {...user} />)}
+```
+👉 `for...of` would require building an array manually first.
+
+---
+
+### **2. Pre‑processing Data Before Rendering**
+If you need to **transform or filter data** before rendering, `for...of` can be cleaner:
+```js
+const processed = [];
+for (const product of products) {
+  if (product.price > 30000) {
+    processed.push({ ...product, premium: true });
+  }
+}
+```
+👉 Then render with `.map()`:
+```jsx
+{processed.map(p => <Product key={p.id} {...p} />)}
+```
+
+---
+
+### **3. Async Iteration (with `await`)**
+React apps often fetch data. `for...of` works beautifully with `await` inside loops:
+```js
+for (const url of urls) {
+  const res = await fetch(url);
+  const data = await res.json();
+  console.log(data);
+}
+```
+👉 `.map()` doesn’t handle `await` well without `Promise.all`.
+
+---
+
+### **4. Iterating Non‑Array Iterables**
+React projects sometimes deal with **Sets, Maps, or custom iterables**.  
+`for...of` works directly:
+```js
+const ids = new Set([1, 2, 3]);
+for (const id of ids) {
+  console.log(id);
+}
+```
+👉 `.map()` only works on arrays.
+
+---
+
+### **5. Complex Loops with Break/Continue**
+If you need to **exit early** or skip items, `for...of` is better:
+```js
+for (const item of items) {
+  if (!item.active) continue;
+  if (item.id === 10) break;
+  console.log(item);
+}
+```
+👉 `.map()` always iterates the full array.
+
+---
+
+# ✅ **Summary**
+- Use **`.map()`** → when rendering JSX lists (most common in React).  
+- Use **`for...of`** → when:
+  - Pre‑processing data before rendering.  
+  - Handling async operations (`await`).  
+  - Iterating non‑array iterables (Sets, Maps).  
+  - Needing `break`/`continue` logic.  
+
+👉 In React interviews, `.map()` is the expected answer for rendering lists, but showing you know **when `for...of` is better** demonstrates deeper understanding.  
+
+---
+
+Would you like me to create a **side‑by‑side React example** showing the same list rendered with `.map()` vs pre‑processed with `for...of` so you can see the difference clearly?
