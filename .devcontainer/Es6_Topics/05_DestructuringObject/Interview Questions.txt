@@ -1,0 +1,47 @@
+How do you destructure an object and rename its properties at the same time?
+
+How do you provide default values while destructuring?
+
+Show how you would destructure nested objects from an API response.
+
+How can destructuring be used directly in function parameters?
+
+In React, why is destructuring props considered a best practice?
+
+Object Destructuring — Answers--------------------------------------------------
+
+1. Renaming properties
+    const user = { name: "Mohit", age: 28 };
+    const { name: userName, age: userAge } = user;
+    console.log(userName, userAge);
+
+2. Default values
+    const settings = { theme: "dark" };
+    const { theme, language = "English" } = settings;
+    console.log(theme, language);
+
+3. Nested objects
+    const response = { data: { product: { title: "Laptop", price: 45000 } } };
+    const { data: { product: { title, price } } } = response;
+    console.log(title, price);
+
+4. Function parameters
+    function showUser({ name, age }) {
+      console.log(`Name: ${name}, Age: ${age}`);
+    }
+    showUser({ name: "Riya", age: 25 });
+
+5. React props best practice
+    function Profile({ name, age }) {
+  return <h2>{name} - {age}</h2>;
+}
+
+
+Bonus Challenge Answer:-
+    const config = { host: "localhost", port: 3000, secure: true };
+    
+    const { host: serverHost, port: serverPort, secure, protocol = secure ? "https" : "http" } = config;
+    
+    console.log(`Server running at ${protocol}://${serverHost}:${serverPort}`);
+
+
