@@ -1,0 +1,56 @@
+## 🌟 Rest Operator (`...`)
+- **Definition**: Rest operator function ke arguments ya array ke elements ko **collect karke ek single array** banata hai.  
+- **Use case**: Jab hume unknown number of arguments handle karne hote hain.
+
+### Example
+```js
+function sum(...numbers) {
+  return numbers.reduce((acc, val) => acc + val, 0);
+}
+
+console.log(sum(1,2,3,4)); // 10
+```
+
+👉 HindiEnglish Explanation:  
+`...numbers` matlab jitne bhi arguments function ko diye gaye hain, sab ek array ke andar collect ho jaayenge. Yaha `[1,2,3,4]` ban gaya aur reduce se sum nikal liya.
+
+---
+
+## 🌟 Spread Operator (`...`)
+- **Definition**: Spread operator ek array ya object ke elements ko **expand karke alag‑alag values** bana deta hai.  
+- **Use case**: Jab hume array/object ko copy karna ho, merge karna ho, ya function ke arguments mein pass karna ho.
+
+### Example
+```js
+const arr = [1,2,3];
+const newArr = [...arr, 4, 5];
+console.log(newArr); // [1,2,3,4,5]
+
+const nums = [10,20,30];
+console.log(Math.max(...nums)); // 30
+```
+
+👉 HindiEnglish Explanation:  
+`...arr` matlab array ke elements ko spread kar dena, jaise `[1,2,3]` ko alag‑alag `1,2,3` bana diya. Isliye `Math.max(...nums)` mein values individually pass ho gayi.
+
+---
+
+## 🔑 Difference (HindiEnglish style)
+- **Rest**: Collect karta hai → “sabko ek jaga jama karo”  
+- **Spread**: Expand karta hai → “jo group hai usko tod ke alag‑alag karo”  
+
+---
+
+### Real‑world analogy
+- **Rest** → Jaise teacher bolti hai: “Sab students ek line mein aa jao.” (sab ek array mein collect ho gaye).  
+- **Spread** → Jaise teacher bolti hai: “Line tod do aur har student apna roll number individually bolo.” (sab alag‑alag expand ho gaye).
+
+---
+
+✅ Summary:  
+- Rest → function arguments ko ek array mein collect karna.  
+- Spread → array/object ko tod ke alag‑alag values banana.  
+
+---
+
+Mohit, would you like me to also make a **side‑by‑side table** (Rest vs Spread) with HindiEnglish explanation so you can quickly revise before interviews?
